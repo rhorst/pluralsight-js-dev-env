@@ -78,3 +78,22 @@ This publishes actual files to a cloud server so your machine doesn't have to be
   1. npm install -g surge
   2. type 'surge' and you'll be prompted the first time for an email and password. Then you'll be given a randomly generated URL and you're all done. You can even use surge as a permanent host with your own domain name. 
 Thus with surge it's an easy way to do automated deployments via command line.  
+
+Automation
+----------
+THe three most popular options for automating your development and  build process are : grunt, gulp, and npm scripts. 
+
+Grunt was the first and focuses on configuration over code. It's a big chunk of json file that configures grunt to work with your plugins. It's also file-oriented in that it writes files to the disk after each step in the process. Finally it has a large ecosystem of plugins. 
+
+Gulp is a slightly more modern task runner. It improves on grunt in that it focuses on 'in-memory streams' meaning it doesn't have to write to disk after each task - intsead you pipe the output of the previous step to the next step in memory. This makes it slightly faster than grunt. It's code based rather than config based. ALso has a large plugin ecosystem. 
+
+Npm scripts are declared in the scripts section of your package.json file. You can leverage all the power of your OS's command line. You can also directly leverage any npm package you want. You can also call seperate Node scripts; it has convention based pre/post hooks for running other scripts before and after your script. Finally since you're using npm scripts you have access to leverage the world's largest package manager. 
+
+npm scripts wins out because you're using the tool directly, no need for seperate plugins, simpler debugging, and better documentation, easy to learn, and simple.
+
+Demo npm scripts
+-----------------
+
+It's popular to call sep files form teh script section of your pacakge.json file. Let's make an npm script that will start up our dev environment. By convention we'll call it 'start' so we can just type 'npm start' to get going. 
+
+Next add a user-friendly message to help us know what's going on when we start up the dev server. 

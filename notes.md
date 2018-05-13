@@ -128,3 +128,28 @@ Now let's assume you want to consolodate some commands to make one that both sta
   }
 ```
 Now to run it you'd just type ```npm run share``` and woo hoo! it should start up the app on port 3000 and expose the app on a generatedm, shareable public URL via localtunnel!  
+
+Transpilers
+-----------
+
+With the advent of advances in the JavaScript languages, transpilers have become a necessity. 
+
+JS started in 1997 in a few short days. ES2 was released in '98, then a year later ES3 was released. In between ES3 and 4 was a lot of brouhaha so ultimately 4 was never released. JS stagnate for a whole decade before ES5 was released in 2009. After six years, ES6 or ES2015 was put out. This was a particularly exciting release at it included arrow functions, const, let, modules, classes, destructuring, just a whole bunch of neat stuff. 
+
+The 6 release was so huge that the next one (ES7) was much smaller. It only included exponent operator and array includes. ES8 (at the time of this class construction) is expected to include Async Await, class props, object spread. You can play with these new features before they're widely supported by using transpilers. 
+
+There are over 100 languages that compile down to JS today: dart, elm, GWT, coffescript... The most popular ones are Babel, TypeScript, and Elm. 
+
+Babel allows you to play with modern, standards-based JS, today. It tspils latest JS to ES5. 
+
+TypeScript is a superset of JS that adds type safety to JS through type annotations. This adds autocompletion support as well as safer refactorying by 'leaning on explicit type signatures' whatever the hell that means. It clarifies devloper intent. 
+
+Elm is great for other reasons. blehhh....
+
+Babel Configuration
+--------------------
+
+Is completed through using a babel.rc or through package.json. Basically transpiling offers some advantages in that you can use some advanced features of the language before they are officially released. It also lets you use same linting rules everywhere. 
+
+Demo
+----

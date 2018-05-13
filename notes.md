@@ -97,3 +97,34 @@ Demo npm scripts
 It's popular to call sep files form teh script section of your pacakge.json file. Let's make an npm script that will start up our dev environment. By convention we'll call it 'start' so we can just type 'npm start' to get going. 
 
 Next add a user-friendly message to help us know what's going on when we start up the dev server. 
+Add a js file called 'startMessage' to your buildScrips folder and use the 'chalk' library to ouput a message to the console on startup. Then place this script before the npm start script in your package.json by using the 'prestart' convention. 
+
+Note that using the 'pre' prefix is the pre/post hook convention mentioned - using that pre keyword ensures that it will run before any script with the same name, like 'prescript' will run before 'script' and 'postscript' will run after 'script'. 
+
+Now we can automate the rest of our previous steps. It's deprecated now but before you could've set up a script to run 'node security check' before install. LEt's set up one for localtunnel and call it 'share' to run 'lt --port 3000'. 
+
+Running scripts in parallel
+---------------------------
+If you want to run scripts at the same time as another script (in other words, in parallel), use a package called 'npm runall'. This allows you to run multiple things at same time in a cross-platform way.
+
+To do this, change your "start" script to say "start": "npm-run-all --parallel whatever-script whatever-otherscript". So in his example, he's running the node security check and the node start script in parallel so it would've looked like:
+
+  ```
+  "scripts": {
+    "prestart": "node buildScripts/startMessage.js",
+    "start": "npm-run-all --parallel security-check open:src", 
+  "open:src": "node buildScripts/srcServer.js",
+  "security-check": "nsp check",
+  "share": "lt --port 3000"
+  } 
+  ...
+  ```
+
+Now let's assume you want to consolodate some commands to make one that both starts up a web server and shares it via localtunnel. Now let's rename the "share" script to "localtunnel" since that's a more accurate name for what it's doing, then make a new command called "share" that uses 'npm-run-all' to run two things in parallel: starting the web server and starting the localtunnel command:
+```...{ ...
+  "security-check": "nsp check",
+  "localtunnel": "lt --port 3000",
+  "share": "npm-run-all --parallel open:src localtunnel"
+  }
+```
+Now to run it you'd just type ```npm run share``` and woo hoo! it should start up the app on port 3000 and expose the app on a generatedm, shareable public URL via localtunnel!  
